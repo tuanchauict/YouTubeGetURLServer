@@ -7,6 +7,8 @@ import pafy
 app = Flask(__name__)
 
 
+VERSION = '1.0.1'
+
 def gzipped(f):
     @functools.wraps(f)
     def view_func(*args, **kwargs):
@@ -57,7 +59,7 @@ ERROR_EXCEPTION = {
 @app.route('/yt/<youtube_id>')
 @gzipped
 def youtube_info(youtube_id=None):
-    print(youtube_id)
+
     if not youtube_id:
         return ERROR_NO_ID
 
@@ -69,7 +71,6 @@ def youtube_info(youtube_id=None):
         stream_urls = []
 
         for s in streams:
-            print("here", s)
             stream_urls.append({
                 'resolution': s.resolution,
                 'extension': s.extension,
@@ -83,7 +84,8 @@ def youtube_info(youtube_id=None):
             'url': best.url
         }
 
-        print("here")
+        sorted(stream_urls, key=lambda x: int(x['resolution'].split('x')[0]))
+
         return json.dumps({
             'statusCode': 0,
             'status': 'OK',
