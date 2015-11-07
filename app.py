@@ -39,7 +39,7 @@ def gzipped(f):
 @app.route('/')
 @gzipped
 def home():
-    return "Hello world"
+    return "Hello world : " + VERSION
 
 
 ERROR_NO_ID = json.dumps({
@@ -59,7 +59,6 @@ ERROR_EXCEPTION = {
 @app.route('/yt/<youtube_id>')
 @gzipped
 def youtube_info(youtube_id=None):
-
     if not youtube_id:
         return ERROR_NO_ID
 
