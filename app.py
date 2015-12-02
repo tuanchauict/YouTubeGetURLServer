@@ -3,11 +3,12 @@ import gzip
 import functools
 import json
 import pafy
+from ip_info import get_info
 
 app = Flask(__name__)
 
 
-VERSION = '1.0.2'
+VERSION = '1.0.4'
 
 
 def gzipped(f):
@@ -96,6 +97,16 @@ def youtube_info(youtube_id=None):
         error = ERROR_EXCEPTION.copy()
         error['message'] = str(e)
         return json.dumps(error)
+
+
+@app.route('/ip')
+@gzipped
+def get_ip_info():
+    ip = request.remote_addr
+    info = get_info(ip)
+    info['ip'] = ip
+
+    return json.dumps(info)
 
 
 if __name__ == '__main__':
