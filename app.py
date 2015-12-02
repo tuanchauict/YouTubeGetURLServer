@@ -3,7 +3,7 @@ import gzip
 import functools
 import json
 import pafy
-from ip_info import get_info
+from ip_info import get_info, OWNERS
 
 app = Flask(__name__)
 
@@ -113,6 +113,11 @@ def get_ip_info():
     info['ip'] = ip
 
     return json.dumps(info)
+
+@app.route('/ip/owners')
+@gzipped
+def get_all_owners():
+    return json.dumps(OWNERS)
 
 
 if __name__ == '__main__':
