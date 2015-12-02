@@ -98,6 +98,12 @@ def youtube_info(youtube_id=None):
         error['message'] = str(e)
         return json.dumps(error)
 
+@app.route('/ip/<ip>')
+@gzipped
+def get_specified_ip_info(ip):
+    info = get_info(ip)
+    info['ip'] = ip
+    return json.dumps(info)
 
 @app.route('/ip')
 @gzipped
