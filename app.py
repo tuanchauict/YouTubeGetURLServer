@@ -8,7 +8,7 @@ from ip_info import get_info, OWNERS
 app = Flask(__name__)
 
 
-VERSION = '1.0.4'
+VERSION = '1.0.5'
 
 
 def gzipped(f):
@@ -72,16 +72,20 @@ def youtube_info(youtube_id=None):
         stream_urls = []
 
         for s in streams:
+            quality = int(s.resolution.split('x')[0])
             stream_urls.append({
                 'resolution': s.resolution,
                 'extension': s.extension,
+                'quality': quality,
                 'url': s.url
             })
 
         best = video.getbest()
+        quality = int(best.resolution.split('x')[0])
         best_url = {
             'resolution': best.resolution,
             'extension': best.extension,
+            'quality': quality,
             'url': best.url
         }
 
