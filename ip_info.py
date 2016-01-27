@@ -5,6 +5,7 @@ OWNERS = {
     'Amazon': 4,
     'Yahoo': 5,
     'Microsoft': 6,
+    'Hetzner Online Ag': 7,
 }
 
 ip_range = {}
