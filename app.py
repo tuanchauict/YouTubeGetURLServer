@@ -8,7 +8,7 @@ from ip_info import get_info, OWNERS
 app = Flask(__name__)
 
 
-VERSION = '1.0.5'
+VERSION = '1.0.6'
 
 
 def gzipped(f):
